@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Demo web</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <input type="text" name="name"  value=""/>
+        <input type="submit" value="submit">
+    </form>
+    <br>
+    {% if name %}
+    <table>
+        {%for i in name%}
+        <tr>
+            <td>
+                <form action="/update" method="post">
+                <input type="text" value={{i}} name="name">    
+                <input type="hidden" value={{loop.index0}} name="index">
+                <input type="submit" value="update">
+                </form> 
+            </td>
+            <td>
+                <form action="/delete" method="post">
+                <input type="hidden" value={{loop.index0}} name="index">
+                <input type="submit" value="delete">
+                </form> 
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    {%endif%}
+</body>
+</html>
